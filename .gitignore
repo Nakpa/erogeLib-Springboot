@@ -36,3 +36,4 @@ build/
 
 ### NODE JS ###
 .node_modules/
+*.json

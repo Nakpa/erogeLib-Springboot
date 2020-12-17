@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.library.eroge.erogelib.mapper.TtOperateLogMapper">
+  <sql id="Base_Column_List">
+    LOG_ID, `OPERATOR`, OPERATE_TYPE, OPERATE_CONTENT, OPERATE_DATE, CREATE_DATE, UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.library.eroge.erogelib.entity.TtOperateLogPO">
+    select 
+    <include refid="Base_Column_List" />
+    from tt_operate_log
+    where LOG_ID = #{logId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tt_operate_log
+    where LOG_ID = #{logId,jdbcType=BIGINT}
+  </delete>
+</mapper>
