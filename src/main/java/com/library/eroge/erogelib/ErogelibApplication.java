@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.library.eroge.**"})
 @EnableEurekaClient
 @MapperScan("com.library.eroge.erogelib.mapper")
 public class ErogelibApplication {

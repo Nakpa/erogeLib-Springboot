@@ -19,17 +19,20 @@ public class TmUserController {
     @Autowired
     private TmUserService tmUserService;
 
+    // 查询用户
     @GetMapping("/queryTmUser")
     public List<TmUserPO> queryTmUser(@RequestParam TmUserPO tmUserPO) {
         List<TmUserPO> list = tmUserService.queryUserList(tmUserPO);
         return list;
     }
 
+    // 新增账户
     @PostMapping("/insertTmUser")
     public void insertTmUser(@RequestBody @Valid TmUserPO tmUserPO) {
         tmUserService.insertTmUser(tmUserPO);
     }
 
+    // 修改密码
     @PostMapping("/changePassword")
     public void changePassword(@RequestBody @Valid UserInfoDTO tmUserPO) {
         tmUserService.changePassword(tmUserPO);
