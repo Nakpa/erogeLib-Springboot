@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @Transactional
 @RequestMapping("/tmUser")
@@ -21,7 +22,7 @@ public class TmUserController {
 
     // 查询用户
     @GetMapping("/queryTmUser")
-    public List<TmUserPO> queryTmUser(@RequestParam TmUserPO tmUserPO) {
+    public List<TmUserPO> queryTmUser(TmUserPO tmUserPO) {
         List<TmUserPO> list = tmUserService.queryUserList(tmUserPO);
         return list;
     }

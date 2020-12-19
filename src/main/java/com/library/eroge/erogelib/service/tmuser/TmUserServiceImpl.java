@@ -3,6 +3,7 @@ package com.library.eroge.erogelib.service.tmuser;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.csvw.cloud.dms.framework.exception.ServiceBizException;
+import com.csvw.cloud.dms.framework.utils.BeanMapperUtil;
 import com.library.eroge.erogelib.dto.UserInfoDTO;
 import com.library.eroge.erogelib.entity.Md5PO;
 import com.library.eroge.erogelib.entity.TmUserMd5PO;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -37,7 +39,8 @@ public class TmUserServiceImpl implements TmUserService {
 
     @Override
     public List<TmUserPO> queryUserList(TmUserPO tmUserPO) {
-        List<TmUserPO> list = tmUserMapper.queryUserList(tmUserPO);
+        Map<String,Object> params = BeanMapperUtil.toMap(tmUserPO);
+        List<TmUserPO> list = tmUserMapper.queryUserList(params);
         return list;
     }
 

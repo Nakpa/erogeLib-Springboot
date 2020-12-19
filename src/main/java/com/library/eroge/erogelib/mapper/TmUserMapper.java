@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 @Repository
@@ -16,7 +17,7 @@ public interface TmUserMapper extends BaseMapper<TmUserPO> {
 
     TmUserPO selectByPrimaryKey(String userId);
 
-    List<TmUserPO> queryUserList(@Param("tmUserPO") TmUserPO tmUserPO);
+    List<TmUserPO> queryUserList(@Param("params") Map<String,Object> params);
 
     TmUserPO selectPassword(@Param("userId") String userId);
 }
