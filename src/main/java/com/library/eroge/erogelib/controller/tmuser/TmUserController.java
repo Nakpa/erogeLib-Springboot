@@ -1,5 +1,6 @@
 package com.library.eroge.erogelib.controller.tmuser;
 
+import com.library.eroge.erogelib.config.exceptionCatchUtils.annotation.ResponseResult;
 import com.library.eroge.erogelib.dto.UserInfoDTO;
 import com.library.eroge.erogelib.entity.TmUserPO;
 import com.library.eroge.erogelib.service.tmuser.TmUserService;
@@ -14,6 +15,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @Transactional
+@ResponseResult
 @RequestMapping("/tmUser")
 public class TmUserController {
 

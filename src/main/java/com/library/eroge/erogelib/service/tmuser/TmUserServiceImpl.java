@@ -2,8 +2,8 @@ package com.library.eroge.erogelib.service.tmuser;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.csvw.cloud.dms.framework.exception.ServiceBizException;
-import com.csvw.cloud.dms.framework.utils.BeanMapperUtil;
+import com.library.eroge.erogelib.config.exceptionCatchUtils.BaseError.CommonEnumBaseError;
+import com.library.eroge.erogelib.config.exceptionCatchUtils.BizExceptionHandler;
 import com.library.eroge.erogelib.dto.UserInfoDTO;
 import com.library.eroge.erogelib.entity.Md5PO;
 import com.library.eroge.erogelib.entity.TmUserMd5PO;
@@ -39,8 +39,7 @@ public class TmUserServiceImpl implements TmUserService {
 
     @Override
     public List<TmUserPO> queryUserList(TmUserPO tmUserPO) {
-        Map<String,Object> params = BeanMapperUtil.toMap(tmUserPO);
-        List<TmUserPO> list = tmUserMapper.queryUserList(params);
+        List<TmUserPO> list = tmUserMapper.queryUserList(tmUserPO);
         return list;
     }
 
@@ -74,7 +73,7 @@ public class TmUserServiceImpl implements TmUserService {
         String confirmPassword = decrypt(tmUserPO.getAccoPassword() , tmUserMd5PO.getMd5());
 
         if(!confirmPassword.equals(oldPassword)) {
-            throw new ServiceBizException("输入的原密码与账号当前密码不匹配!");
+            throw new BizExceptionHandler(CommonEnumBaseError.ERROR_PASSWORD.getResultMsg());
         }
 
         // 密码相同，开始修改密码 // 将新密码加密
