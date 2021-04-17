@@ -1,4 +1,4 @@
-package com.library.eroge.erogelib.service;
+package com.library.eroge.erogelib.utils;
 
 import java.security.Key;
 import javax.crypto.Cipher;
@@ -31,8 +31,7 @@ public class PasswordUtil {
             arrB[i] = arrBTmp[i];
         }
         // 生成密钥
-        Key key = new javax.crypto.spec.SecretKeySpec(arrB, "DES");
-        return key;
+        return new javax.crypto.spec.SecretKeySpec(arrB, "DES");
     }
 
     /**
@@ -47,9 +46,9 @@ public class PasswordUtil {
     public static String byteArr2HexStr(byte[] arrB) throws Exception {
         int iLen = arrB.length;
         // 每个byte用2个字符才能表示，所以字符串的长度是数组长度的2倍
-        StringBuffer sb = new StringBuffer(iLen * 2);
-        for (int i = 0; i < iLen; i++) {
-            int intTmp = arrB[i];
+        StringBuilder sb = new StringBuilder(iLen * 2);
+        for (int b : arrB) {
+            int intTmp = b;
             // 把负数转换为正数
             while (intTmp < 0) {
                 intTmp = intTmp + 256;

@@ -18,6 +18,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @ControllerAdvice
 public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
@@ -55,8 +56,9 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
      */
     @ExceptionHandler(value = BizExceptionHandler.class)
     @ResponseBody
-    public  ResultBody bizExceptionHandler(HttpServletRequest req, BizExceptionHandler e){
+    public  ResultBody bizExceptionHandler(HttpServletRequest req , HttpServletResponse response, BizExceptionHandler e){
         logger.error("发生业务异常！原因是：{}",e.getErrorMsg());
+        response.setStatus(Integer.parseInt(e.getErrorCode()));
         return ResultBody.error(e.getErrorCode(),e.getErrorMsg());
     }
 
@@ -65,8 +67,9 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
      */
     @ExceptionHandler(value =NullPointerException.class)
     @ResponseBody
-    public ResultBody exceptionHandler(HttpServletRequest req, NullPointerException e){
+    public ResultBody exceptionHandler(HttpServletRequest req ,HttpServletResponse response, NullPointerException e){
         logger.error("发生空指针异常！原因是:",e);
+        response.setStatus(Integer.parseInt(CommonEnumBaseError.BODY_NOT_MATCH.getResultCode()));
         return ResultBody.error(CommonEnumBaseError.BODY_NOT_MATCH);
     }
 
@@ -75,8 +78,9 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
      */
     @ExceptionHandler(value =Exception.class)
     @ResponseBody
-    public ResultBody exceptionHandler(HttpServletRequest req, Exception e){
+    public ResultBody exceptionHandler(HttpServletRequest req,HttpServletResponse response, Exception e){
         logger.error("未知异常！原因是:",e);
+        response.setStatus(Integer.parseInt(CommonEnumBaseError.INTERNAL_SERVER_ERROR.getResultCode()));
         return ResultBody.error(CommonEnumBaseError.INTERNAL_SERVER_ERROR);
     }
 

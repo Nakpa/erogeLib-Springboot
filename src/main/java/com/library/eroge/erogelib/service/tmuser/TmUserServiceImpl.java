@@ -11,15 +11,13 @@ import com.library.eroge.erogelib.entity.TmUserPO;
 import com.library.eroge.erogelib.mapper.Md5Mapper;
 import com.library.eroge.erogelib.mapper.TmUserMapper;
 import com.library.eroge.erogelib.mapper.TmUserMd5Mapper;
-import com.library.eroge.erogelib.service.PasswordUtil;
+import com.library.eroge.erogelib.utils.PasswordUtil;
 import com.library.eroge.erogelib.service.operatelog.TtOperateLogService;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -39,8 +37,7 @@ public class TmUserServiceImpl implements TmUserService {
 
     @Override
     public List<TmUserPO> queryUserList(TmUserPO tmUserPO) {
-        List<TmUserPO> list = tmUserMapper.queryUserList(tmUserPO);
-        return list;
+        return tmUserMapper.queryUserList(tmUserPO);
     }
 
     @Override
@@ -94,6 +91,7 @@ public class TmUserServiceImpl implements TmUserService {
         ttOperateLogService.insertOperateLog(10021001,content , userId);
     }
 
+    // 修改密码时插入一条当前密码对应md5的记录
     public void insertUserMd5(String userId){
         Md5PO md5PO = md5Mapper.selectLastValidMd5();
         String md5 = md5PO.getMd5();
