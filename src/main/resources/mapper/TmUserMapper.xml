@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.library.eroge.erogelib.mapper.TmUserMapper">
+  <sql id="Base_Column_List">
+    USER_ID, USER_NAME, USER_ACCOUNT, USER_ICON, TEL_PHONE, EMAIL, REMARK,
+    CREATE_DATE, UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="com.library.eroge.erogelib.entity.TmUserPO">
+    select 
+    <include refid="Base_Column_List" />
+    from tm_user
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectPassword" parameterType="java.lang.String" resultType="com.library.eroge.erogelib.entity.TmUserPO">
+    select
+      ACCO_PASSWORD,USER_NAME
+    from tm_user
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tm_user
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </delete>
+
+  <select id="queryUserList" resultType="com.library.eroge.erogelib.entity.TmUserPO">
+    SELECT
+        <include refid="Base_Column_List"></include>
+    FROM TM_USER
+    WHERE 1 = 1
+    <if test="params.userName != null and params.userName != ''">
+      AND USER_NAME LIKE CONCAT('%' , #{params.userName} , '%')
+    </if>
+    <if test="params.userAccount != null and params.userAccount != ''">
+      AND USER_ACCOUNT LIKE CONCAT('%' , #{params.userAccount} , '%')
+    </if>
+    <if test="params.telPhone != null and params.telPhone != ''">
+      AND TEL_PHONE LIKE CONCAT('%' , #{params.telPhone} , '%')
+    </if>
+    <if test="params.email != null and params.email != ''">
+      AND EMAIL LIKE CONCAT('%' , #{params.email} , '%')
+    </if>
+  </select>
+
+</mapper>

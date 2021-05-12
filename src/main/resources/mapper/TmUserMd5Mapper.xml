@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.library.eroge.erogelib.mapper.TmUserMd5Mapper">
+  <sql id="Base_Column_List">
+    INDEX_ID, USER_ID, MD5
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.library.eroge.erogelib.entity.TmUserMd5PO">
+    select 
+    <include refid="Base_Column_List" />
+    from tm_user_md5
+    where INDEX_ID = #{indexId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tm_user_md5
+    where INDEX_ID = #{indexId,jdbcType=INTEGER}
+  </delete>
+
+
+  <select id="selectByUserId" parameterType="java.lang.String" resultType="com.library.eroge.erogelib.entity.TmUserMd5PO">
+    select
+    <include refid="Base_Column_List" />
+    from tm_user_md5
+    where USER_ID = #{userId}
+  </select>
+</mapper>
