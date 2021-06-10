@@ -57,7 +57,9 @@ public class WebProxyConfiger implements WebMvcConfigurer {
         List<String> excludePath = new ArrayList<>();
         //排除拦截，除了注册登录(此时还没token)，其他都拦截
         excludePath.add("/access/register");   //注册
+        excludePath.add("/tmUser/insertTmUser");   //注册
         excludePath.add("/access/userLogin");    //登录
+        excludePath.add("/error");    //
         excludePath.add("/static/**");  //静态资源
         excludePath.add("/assets/**");  //静态资源
 

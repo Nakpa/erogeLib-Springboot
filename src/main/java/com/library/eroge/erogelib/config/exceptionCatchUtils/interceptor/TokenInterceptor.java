@@ -23,6 +23,10 @@ public class TokenInterceptor implements HandlerInterceptor {
             response.setStatus(HttpServletResponse.SC_OK);
             return true;
         }
+        if(request.getServletPath().equals("/error")){
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            return true;
+        }
         response.setCharacterEncoding("utf-8");
 //        log.info("  >>>>>>>>>>>>>  token {}" , request.getHeader("token"));
         log.info("  >>>>>>>>>>>>>  token {}" , request.getHeader("Authorization"));

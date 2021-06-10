@@ -20,4 +20,6 @@ public interface TmUserMapper extends BaseMapper<TmUserPO> {
     List<TmUserPO> queryUserList(@Param("params") TmUserPO params);
 
     TmUserPO selectPassword(@Param("userId") String userId);
+
+    TmUserPO queryUserByAccount(@Param("params") TmUserPO params);
 }

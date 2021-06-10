@@ -13,6 +13,7 @@ import com.library.eroge.erogelib.mapper.TmUserMapper;
 import com.library.eroge.erogelib.mapper.TmUserMd5Mapper;
 import com.library.eroge.erogelib.utils.PasswordUtil;
 import com.library.eroge.erogelib.service.operatelog.TtOperateLogService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class TmUserServiceImpl implements TmUserService {
 
     @Autowired
@@ -125,11 +127,10 @@ public class TmUserServiceImpl implements TmUserService {
         try {
             PasswordUtil passwordUtil = new PasswordUtil(md5);
 
-            System.out.println("加密前的字符：" + password);
+            log.info("加密前的字符：" + password);
 
             passwordAfter = passwordUtil.encrypt(password);
-            System.out.println("加密后的字符：" + passwordAfter);
-//            System.out.println("解密后的字符：" + passwordUtil.decrypt(passwordAfter));
+            log.info("加密后的字符：" + passwordAfter);
 
         } catch (Exception e){
             throw new RuntimeException(e);
@@ -145,7 +146,7 @@ public class TmUserServiceImpl implements TmUserService {
         try {
             PasswordUtil passwordUtil = new PasswordUtil(md5);
             passwordAfter = passwordUtil.decrypt(oldPassword);
-            System.out.println("解密后的字符：" + passwordAfter);
+            log.info("解密后的字符：" + passwordAfter);
         } catch (Exception e){
             throw new RuntimeException(e);
         }

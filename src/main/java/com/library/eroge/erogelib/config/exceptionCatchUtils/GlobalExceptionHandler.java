@@ -58,6 +58,9 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
     @ResponseBody
     public  ResultBody bizExceptionHandler(HttpServletRequest req , HttpServletResponse response, BizExceptionHandler e){
         logger.error("发生业务异常！原因是：{}",e.getErrorMsg());
+        if(e.getErrorCode() == null){
+            e.setErrorCode("500");
+        }
         response.setStatus(Integer.parseInt(e.getErrorCode()));
         return ResultBody.error(e.getErrorCode(),e.getErrorMsg());
     }

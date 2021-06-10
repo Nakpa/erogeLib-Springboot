@@ -32,11 +32,6 @@ public class UserLoginAccess {
     public void register(@RequestBody @Valid UserInfoDTO userInfoDTO) {
     }
 
-    // 修改密码
-    @PostMapping("/updatePassword")
-    public void updatePassword(@RequestBody @Valid UserInfoDTO userInfoDTO) {
-    }
-
     // 用户登出
     @PostMapping("/userLogout")
     public void userLogout(@RequestBody @Valid UserInfoDTO userInfoDTO) {
