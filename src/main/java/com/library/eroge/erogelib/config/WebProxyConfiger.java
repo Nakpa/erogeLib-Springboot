@@ -60,6 +60,7 @@ public class WebProxyConfiger implements WebMvcConfigurer {
         excludePath.add("/tmUser/insertTmUser");   //注册
         excludePath.add("/access/userLogin");    //登录
         excludePath.add("/error");    //
+        excludePath.add("/blog/**");    // blog 内容可以不登录查看。
         excludePath.add("/static/**");  //静态资源
         excludePath.add("/assets/**");  //静态资源
 
