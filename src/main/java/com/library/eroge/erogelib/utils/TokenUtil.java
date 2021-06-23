@@ -24,7 +24,7 @@ public class TokenUtil {
     private final static String ISSUER = "EROGE-LIB";       // auth
 
 //    @Value("${TOKEN_SECRET}")
-    private final static String TOKEN_SECRET = "MinakamiYuki";  //密钥
+    private final static String TOKEN_SECRET = "Nikaidoushinku";  //密钥
 
     /* *
      * 签名生成

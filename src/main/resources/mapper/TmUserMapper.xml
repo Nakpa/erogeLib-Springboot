@@ -43,4 +43,13 @@
     </if>
   </select>
 
+  <select id="queryUserByAccount" resultType="com.library.eroge.erogelib.entity.TmUserPO">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    ,ACCO_PASSWORD
+    FROM TM_USER
+    WHERE USER_ACCOUNT = #{params.userAccount}
+    Limit 1
+  </select>
+
 </mapper>
