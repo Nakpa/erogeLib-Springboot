@@ -51,7 +51,11 @@ public class UserLoginAccessServiceImpl implements UserLoginAccessService {
 
         String token = TokenUtil.sign(userInfoDTO);
         TokenMap tokenMap = TokenUtil.encrToken(token);
-        tokenMap.setUserAcco(userInfoDTO.getUserAccount());
+        tokenMap.setUserId(user.getUserId());
+        tokenMap.setUserAcco(user.getUserAccount());
+        tokenMap.setUserName(user.getUserName());
+        tokenMap.setEmail(user.getEmail());
+        tokenMap.setRemark(user.getRemark());
         log.info(" >>>>>>>>>>>>>> login successful >>>>>>>>>>>>>>>>> ");
         log.info(" >>>>>>>>>>>>>> loginAccount: {}" , userInfoDTO.getUserAccount());
         log.info(" >>>>>>>>>>>>>> token: {}" , token);
