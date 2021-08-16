@@ -31,6 +31,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 //        log.info("  >>>>>>>>>>>>>  token {}" , request.getHeader("token"));
         log.info("  >>>>>>>>>>>>>  token {}" , request.getHeader("Authorization"));
         String token = request.getHeader("Authorization");
+        log.info(">>>>>>>>>>>>>  当前请求uri {}" , request.getServletPath());
         if(token != null){
             boolean result = TokenUtil.verify(token);
             if(result){
