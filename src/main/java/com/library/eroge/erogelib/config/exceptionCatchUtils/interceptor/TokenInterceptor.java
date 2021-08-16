@@ -36,6 +36,7 @@ public class TokenInterceptor implements HandlerInterceptor {
                 return true;
             }
         } else {
+            log.info("[登录 | 注册] >>>>>>>>>>>>>  通过拦截器");
             return true;
         }
         response.setCharacterEncoding("utf-8");
