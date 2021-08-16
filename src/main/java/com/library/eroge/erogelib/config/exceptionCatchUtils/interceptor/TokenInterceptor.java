@@ -11,6 +11,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @Slf4j
@@ -23,8 +25,17 @@ public class TokenInterceptor implements HandlerInterceptor {
             response.setStatus(HttpServletResponse.SC_OK);
             return true;
         }
-        if(request.getServletPath().equals("/error")){
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        List<String> tokenAcceptPath = new ArrayList<>();
+        tokenAcceptPath.add("/build-erogeLib/access/userLogin");
+        tokenAcceptPath.add("/build-erogeLib/access/register");
+        tokenAcceptPath.add("/access/userLogin");
+        tokenAcceptPath.add("/access/userLogin");
+        if(!tokenAcceptPath.contains(request.getServletPath())){
+            if(request.getServletPath().equals("/error")){
+                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                return true;
+            }
+        } else {
             return true;
         }
         response.setCharacterEncoding("utf-8");
