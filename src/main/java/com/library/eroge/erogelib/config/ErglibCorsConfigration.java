@@ -15,7 +15,7 @@ public class ErglibCorsConfigration {
         //1.添加CORS配置信息
         CorsConfiguration config = new CorsConfiguration();
         //1) 允许的域,不要写*，否则cookie就无法使用了
-        config.addAllowedOrigin("http://120.79.210.127");
+        config.addAllowedOrigin("*");
         //3) 允许的请求方式
         config.addAllowedMethod("OPTIONS");
         config.addAllowedMethod("POST");
