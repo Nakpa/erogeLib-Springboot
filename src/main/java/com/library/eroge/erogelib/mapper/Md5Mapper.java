@@ -1,5 +1,6 @@
 package com.library.eroge.erogelib.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.library.eroge.erogelib.entity.Md5PO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface Md5Mapper {
+public interface Md5Mapper extends BaseMapper<Md5PO> {
 
     int deleteByPrimaryKey(Long indexId);
 

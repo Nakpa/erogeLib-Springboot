@@ -23,6 +23,8 @@ public enum CommonEnumBaseError implements BaseErrorInfoInterface {
 
     ERROR_PASSWORD("1001", "输入的原密码与账号当前密码不匹配"),
 
+    ERROR_NO_USERINFO("1002", "发出的请求未获取到登录信息"),
+
     ERROR_TOEKN_VERIFY("50000", "token认证失败!");
 
 
